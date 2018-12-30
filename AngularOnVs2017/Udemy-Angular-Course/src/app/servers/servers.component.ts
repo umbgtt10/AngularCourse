@@ -9,11 +9,12 @@ export class ServersComponent implements OnInit {
   allowNewServer = false;
   serverCreation = "No server was created";
   serverName = 'TestServer';
-
-  username: string = "";
+  serverCreated = false;
+  servers = ['TestServer', 'TestServer 2']
+  displayToggle = false;
+  displayClicks = [];
 
   constructor() {
-
     setTimeout(() => { this.allowNewServer = true; }, 2000);
   }
 
@@ -22,13 +23,20 @@ export class ServersComponent implements OnInit {
 
   onCreateServer() {
     this.serverCreation = "Server was created! Name is: " + this.serverName;
+    this.serverCreated = true;
+    this.servers.push(this.serverName);
   }
 
   onUpdateServerName(event: Event) {
     this.serverName = (<HTMLInputElement>event.target).value;
   }
 
-  onClickResetUserName() {
-    this.username = "";
+  onDisplayToggle() {
+    return this.displayToggle;
+  }
+
+  onClickDisplayDetails() {
+    this.displayClicks.push('New click number: ' + this.displayClicks.length);
+    this.displayToggle = !this.displayToggle;
   }
 }
