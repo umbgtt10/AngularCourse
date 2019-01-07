@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Recipe } from '../recipe.model';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -8,22 +9,11 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
+  recipes: Recipe[] = [];
 
-  @Output() onClickedRecipeForwarder = new EventEmitter<Recipe>();
-
-  recipes: Recipe[] = [
-    new Recipe("A Test Recipe", "This is a simple Test",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQChJQehp7OXvPOzFUeqc4rJjCvl1wtq3Rp8DiJic5-L_dXOTcU"),
-    new Recipe("Another Test Recipe", "This is a simple Test2",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQChJQehp7OXvPOzFUeqc4rJjCvl1wtq3Rp8DiJic5-L_dXOTcU"),
-  ];
-
-  constructor() { }
+  constructor(private recipesService: RecipeService) { }
 
   ngOnInit() {
-  }
-
-  onRecipeClickedToBeForwarded(recipe: Recipe) {
-    this.onClickedRecipeForwarder.emit(recipe);
+    this.recipes = this.recipesService.getRecipes();
   }
 }
