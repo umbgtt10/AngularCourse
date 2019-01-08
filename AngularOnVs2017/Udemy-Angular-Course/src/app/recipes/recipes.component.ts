@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Recipe } from './recipe.model';
 import { RecipeService } from './recipe.service';
 
 @Component({
@@ -10,18 +8,8 @@ import { RecipeService } from './recipe.service';
   providers: [RecipeService]
 })
 export class RecipesComponent implements OnInit {
-  selectedRecipe: Recipe;
-
-  constructor(private recipesService: RecipeService) { }
+  constructor() { }
 
   ngOnInit() {
-    console.log('Subscribing to event : recipeSelected');
-
-    this.recipesService.recipeSelected.subscribe(
-      (recipe: Recipe) => {
-        console.log('Caught event with payload: ' + recipe);
-        this.selectedRecipe = recipe;
-      }
-    )
   }
 }
