@@ -7,9 +7,4 @@ import { ScreenToShow } from './shared/ingredient.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  showRecipesOrShoppingList: ScreenToShow;
-
-  onNavigate(showRecipesOrShoppingList: ScreenToShow) {
-    this.showRecipesOrShoppingList = showRecipesOrShoppingList;
-  }
 }
